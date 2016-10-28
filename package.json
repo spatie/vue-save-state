@@ -1,7 +1,7 @@
 {
-  "name": ":package_name",
+  "name": "vue-save-state",
   "version": "0.1.0",
-  "description": ":package_description",
+  "description": "A Vue mixin to save the state of a component to local storage",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
@@ -11,17 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/:github_organization/:package_name.git"
+    "url": "https://github.com/spatie/vue-save-state.git"
   },
   "keywords": [
     "spatie"
   ],
-  "author": ":author_name",
+  "author": "Freek Van der Herten",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/:github_organization/:package_name/issues"
+    "url": "https://github.com/spatie/vue-save-state/issues"
   },
-  "homepage": "https://github.com/:github_organization/:package_name",
+  "homepage": "https://github.com/spatie/vue-save-state",
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
