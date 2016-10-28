@@ -39,12 +39,12 @@ export default {
 
 function saveState(key, data)
 {
-    localStorage.setItem(key, JSON.stringify(data));
+    //localStorage.setItem(key, JSON.stringify(data));
 }
 
-function getSavedSate(key)
+function getSavedState(key)
 {
-    const savedState = localStorage.getItem(key);
+    //const savedState = localStorage.getItem(key);
 
-    return savedState ? JSON.parse(savedState) : null;
+    //return savedState ? JSON.parse(savedState) : null;
 }
