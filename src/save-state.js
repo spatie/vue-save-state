@@ -29,12 +29,22 @@ export default {
         });
         },
         saveState() {
-            localStorage.setItem(this.getSavedStateParameters().cacheKey, JSON.stringify(this.$data));
+            saveState(this.getSavedStateParameters().cacheKey, this.$data)
         },
         getSavedState() {
-            const savedState = localStorage.getItem(this.getSavedStateParameters().cacheKey);
-
-            return savedState ? JSON.parse(savedState) : null;
+            return getSavedState(this.getSavedStateParameters().cacheKey);
         },
     },
 };
+
+function saveState(key, data)
+{
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getSavedSate(key)
+{
+    const savedState = localStorage.getItem(key);
+
+    return savedState ? JSON.parse(savedState) : null;
+}
