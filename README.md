@@ -23,7 +23,7 @@ The best postcards will get published on the open source page on our website.
 You can install the package via yarn:
 
 ```bash
-$ yarn install vue-save-state
+$ yarn add vue-save-state
 ```
 
 

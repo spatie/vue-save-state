@@ -27,6 +27,14 @@
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-es2015": "^6.9.0",
     "eslint": "^3.7.1",
-    "eslint-config-spatie": "^1.1.0"
+    "eslint-config-spatie": "^1.1.0",
+    "jest": "^16.0.2"
+  },
+  "dependencies": {
+    "lodash": "^4.16.4",
+    "vue": "^2.0.3"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
