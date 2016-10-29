@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {assert} from 'chai';
-import TestComponent from '../TestDummies/TestComponent'
-import LocalStorageMock from '../TestDummies/LocalStorageMock';
+import TestComponent from '../testHelpers/TestComponent'
+import LocalStorageMock from '../testHelpers/LocalStorageMock';
 
 let vm;
 let localStorage;
