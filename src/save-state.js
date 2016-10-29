@@ -4,6 +4,7 @@ export default {
     watch: {
         '$data': {
             handler() {
+                console.log('observed changed data');
                 this.saveState();
             },
             deep: true,
@@ -11,6 +12,7 @@ export default {
     },
 
     created() {
+        console.log('created method of mixin called');
         this.loadState();
     },
 
@@ -39,12 +41,13 @@ export default {
 
 function saveState(key, data)
 {
-    //localStorage.setItem(key, JSON.stringify(data));
+    console.log('savingState', key, data);
+    localStorage.setItem(key, JSON.stringify(data));
 }
 
 function getSavedState(key)
 {
-    //const savedState = localStorage.getItem(key);
+    const savedState = localStorage.getItem(key);
 
-    //return savedState ? JSON.parse(savedState) : null;
+    return savedState ? JSON.parse(savedState) : null;
 }

@@ -9,7 +9,7 @@ export default {
 
     data() {
         return {
-            string: 'this is the data'
+            string: 'initial string'
         }
     },
 
@@ -20,6 +20,11 @@ export default {
                 'cacheKey': 'projectsComponent',
             };
         },
+
+        changeString() {
+            console.log('change has been called');
+            this.string = 'updated';
+        }
     },
 
 
