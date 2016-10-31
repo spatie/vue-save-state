@@ -43,11 +43,11 @@ export default {
 
         attributeIsManagedBySaveState(attribute) {
 
-            if (! this.getSaveStateConfig().attributes) {
+            if (! this.getSaveStateConfig().saveProperties) {
                 return true;
             }
 
-            return this.getSaveStateConfig().attributes.indexOf(attribute) !== -1;
+            return this.getSaveStateConfig().saveProperties.indexOf(attribute) !== -1;
         },
     },
 };

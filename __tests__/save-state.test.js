@@ -72,7 +72,7 @@ test('it only saves the state for the given attributes in the configuration', as
         },
         'configuration': {
             'cacheKey': 'testComponent',
-            'attributes': ['anotherString']
+            'saveProperties': ['anotherString']
         }
     }
 
@@ -92,7 +92,7 @@ test('it will not save any state when the attributes configuration option is emp
     const componentConfiguration = {
         'configuration': {
             'cacheKey': 'testComponent',
-            'attributes': ['anotherString']
+            'saveProperties': ['anotherString']
         }
     }
 

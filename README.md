@@ -34,9 +34,7 @@ $ npm install vue-save-state
 
 ## Usage
 
-### Preparing your component
-
-You'll need to add the `SaveState` mixin:
+In order to save the state of your component you'll need to add the `SaveState` mixin:
 
 ```js
 export default {
@@ -53,19 +51,44 @@ Next you'll need to add a method called `getSaveStateConfig`:
 export default {
 
     mixins: [SaveState],
+    
+    ...
 
     methods: {
 
         getSaveStateConfig() {
             return {
-                'cacheKey': 'nameOfYouComponent'
+                'cacheKey': 'nameOfYouComponent',
             };
         },
     },
 }
 ```
 
-Rest of readme coming soon...
+
+
+With these steps done any change to the state of your component will get written to local storage. The value given in `cacheKey` determines to which key in local storage the state of this component will get written. When the component is created it'll restore it's state from local storage.
+
+There's also a configuration option to determine which properties of the state should be saved/restored:
+
+```js
+export default {
+    
+    ...
+
+    methods: {
+
+        getSaveStateConfig() {
+            return {
+                'cacheKey': 'nameOfYouComponent',
+                'saveProperties': ['title', 'text'],
+            };
+        },
+    },
+}
+```
+
+With this configuration only the `title` and `text` properties of your state will get saved/restored.
 
 ## Change log
 
