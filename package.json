@@ -5,14 +5,21 @@
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "node_modules/.bin/eslint -c .eslintrc --fix  src __tests__ --ext=.js --ext=.vue;exit 0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/spatie/vue-save-state.git"
   },
   "keywords": [
-    "spatie"
+    "spatie",
+    "vue",
+    "state",
+    "save",
+    "restore",
+    "local",
+    "storage"
   ],
   "author": "Freek Van der Herten",
   "license": "MIT",
@@ -35,5 +42,8 @@
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "lodash": "^4.16.4",
     "vue": "^2.0.3"
+  },
+  "jest": {
+    "testRegex": "test.js$"
   }
 }

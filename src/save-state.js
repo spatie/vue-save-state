@@ -1,4 +1,4 @@
-import {forEach, pickBy, find} from 'lodash';
+import { forEach, pickBy } from 'lodash';
 
 export default {
     watch: {
@@ -29,12 +29,13 @@ export default {
                 }
             });
         },
+
         saveState() {
-            let data = pickBy(this.$data, (value, attribute) => {
-                return this.attributeIsManagedBySaveState(attribute)
+            const data = pickBy(this.$data, (value, attribute) => {
+                return this.attributeIsManagedBySaveState(attribute);
             });
 
-            saveState(this.getSaveStateConfig().cacheKey, data)
+            saveState(this.getSaveStateConfig().cacheKey, data);
         },
         getSavedState() {
             return getSavedState(this.getSaveStateConfig().cacheKey);
@@ -46,8 +47,8 @@ export default {
                 return true;
             }
 
-            return this.getSaveStateConfig().attributes.indexOf(attribute) !== -1
-        }
+            return this.getSaveStateConfig().attributes.indexOf(attribute) !== -1;
+        },
     },
 };
 

@@ -5,8 +5,7 @@
 [![Build Status](https://img.shields.io/travis/spatie/vue-save-state/master.svg?style=flat-square)](https://travis-ci.org/spatie/vue-save-state)
 [![Code Climate](https://img.shields.io/codeclimate/github/spatie/vue-save-state.svg?style=flat-square)](https://img.shields.io/codeclimate/github/spatie/vue-save-state.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This package provides a `SaveState` mixin that automatically saves any change in the state to your component to localStorage. The next time that component gets initialized it will restore it's state from the saved values in local storage.
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -35,11 +34,38 @@ $ npm install vue-save-state
 
 ## Usage
 
-```js
-const myPackage = require('my-package');
+### Preparing your component
 
-myPackage.doStuff();
+You'll need to add the `SaveState` mixin:
+
+```js
+export default {
+
+    mixins: [SaveState],
+
+    ...
+}
 ```
+
+Next you'll need to add a method called `getSaveStateConfig`:
+
+```js
+export default {
+
+    mixins: [SaveState],
+
+    methods: {
+
+        getSaveStateConfig() {
+            return {
+                'cacheKey': 'nameOfYouComponent'
+            };
+        },
+    },
+}
+```
+
+Rest of readme coming soon...
 
 ## Change log
 

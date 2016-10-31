@@ -6,9 +6,8 @@ We accept contributions via Pull Requests on [Github](https://github.com/spatie/
 
 ## Pull Requests
 
-- Use the ES2015 syntax.
-- Your patch won't be accepted if it doesn't pass the tests and lints (`npm run test`).
-- If there's a `/demo` section, try to add an example.
+- Use the ES2016 syntax.
+- Your patch won't be accepted if it doesn't pass the tests and lints (`npm run test` and `npm run lint`).
 - **Document any change in behaviour:** Make sure the `README.md`, `CHANGELOG.md` and any other relevant documentation are kept up-to-date.
 - **Consider our release cycle:** We try to follow [SemVer v2.0.0](http://semver.org/). Randomly breaking public APIs is not an option.
 - **Create feature branches:** Don't ask us to pull from your master branch.
@@ -18,7 +17,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/spatie/
 ## Running Tests
 
 ``` bash
-$ npm test
+$ npm run test
 ```
 
 **Happy coding**!

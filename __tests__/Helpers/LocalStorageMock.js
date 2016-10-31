@@ -11,7 +11,7 @@ const localStorageMock = (function () {
         },
         clear() {
             store = {};
-        }
+        },
     };
 });
 
