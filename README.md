@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/travis/spatie/vue-save-state/master.svg?style=flat-square)](https://travis-ci.org/spatie/vue-save-state)
 [![Code Climate](https://img.shields.io/codeclimate/github/spatie/vue-save-state.svg?style=flat-square)](https://img.shields.io/codeclimate/github/spatie/vue-save-state.svg)
 
-This package provides a `SaveState` mixin that automatically saves any change in the state to your component to localStorage. The next time that component gets initialized it will restore it's state from the saved values in local storage.
+This package provides a `SaveState` mixin that automatically saves any change in the state of your component to localStorage. The next time that component gets initialized it will restore its state from the saved values in local storage.
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -58,14 +58,14 @@ export default {
 
         getSaveStateConfig() {
             return {
-                'cacheKey': 'nameOfYouComponent',
+                'cacheKey': 'nameOfYourComponent',
             };
         },
     },
 }
 ```
 
-With these steps done any change to the state of your component will get written to local storage. The value given in `cacheKey` determines to which key in local storage the state of this component will get written. When the component is created it'll restore it's state from local storage.
+With these steps done any change to the state of your component will get written to local storage. The value given in `cacheKey` determines to which key in local storage the state of this component will get written. When the component is created it'll restore its state from local storage.
 
 There's also a configuration option to determine which properties of the state should be saved/restored:
 
@@ -78,7 +78,7 @@ export default {
 
         getSaveStateConfig() {
             return {
-                'cacheKey': 'nameOfYouComponent',
+                'cacheKey': 'nameOfYourComponent',
                 'saveProperties': ['title', 'text'],
             };
         },
