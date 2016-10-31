@@ -55,7 +55,7 @@ function createTestComponent() {
 
         methods: {
 
-            getSavedStateParameters() {
+            getSaveStateConfig() {
                 return {
                     'cacheKey': 'testComponent',
                     'attributes': ['string']

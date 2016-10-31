@@ -29,10 +29,10 @@ export default {
             });
         },
         saveState() {
-            saveState(this.getSavedStateParameters().cacheKey, this.$data)
+            saveState(this.getSaveStateConfig().cacheKey, this.$data)
         },
         getSavedState() {
-            return getSavedState(this.getSavedStateParameters().cacheKey);
+            return getSavedState(this.getSaveStateConfig().cacheKey);
         },
     },
 };
