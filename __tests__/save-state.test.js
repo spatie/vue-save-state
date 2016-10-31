@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {assert} from 'chai';
-import TestComponent from '../testHelpers/TestComponent'
-import LocalStorageMock from '../testHelpers/LocalStorageMock';
+import TestComponent from '../__test-helpers__/TestComponent'
+import LocalStorageMock from '../__test-helpers__/LocalStorageMock';
 
 let vm;
 let localStorage;
@@ -17,8 +17,14 @@ test('it has a created function', () => {
     assert.typeOf(vm.$options.created[0], 'function');
 });
 
-test('it stores state in local storage when a change occurs', () => {
-    vm.$options.methods.changeString();
+test('it stores state in local storage when a change occurs', async () => {
+    vm.string = 'updated string';
 
-    assert.equal(localStorage.getItem('projectsComponent'), 'updated string');
-})
+    await Vue.nextTick(() => {});
+
+    assert.equal(getLocalStorageContent().string, 'updated string');
+});
+
+function getLocalStorageContent() {
+    return JSON.parse(localStorage.getItem('projectsComponent'))
+}

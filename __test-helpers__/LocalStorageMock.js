@@ -1,5 +1,6 @@
+let store = {};
+
 const localStorageMock = (function () {
-    let store = {};
 
     return {
         getItem(key) {
@@ -7,6 +8,7 @@ const localStorageMock = (function () {
         },
         setItem(key, value) {
             store[key] = value.toString();
+            console.log('entire store', store);
         },
         clear() {
             store = {};

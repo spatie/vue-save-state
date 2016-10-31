@@ -4,7 +4,6 @@ export default {
     watch: {
         '$data': {
             handler() {
-                console.log('observed changed data');
                 this.saveState();
             },
             deep: true,
@@ -12,7 +11,6 @@ export default {
     },
 
     created() {
-        console.log('created method of mixin called');
         this.loadState();
     },
 

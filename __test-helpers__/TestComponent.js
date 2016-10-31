@@ -20,11 +20,6 @@ export default {
                 'cacheKey': 'projectsComponent',
             };
         },
-
-        changeString() {
-            console.log('change has been called');
-            this.string = 'updated';
-        }
     },
 
 
