@@ -39,7 +39,6 @@ export default {
 
 function saveState(key, data)
 {
-    console.log('savingState', key, data);
     localStorage.setItem(key, JSON.stringify(data));
 }
 

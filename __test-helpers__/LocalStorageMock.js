@@ -8,7 +8,6 @@ const localStorageMock = (function () {
         },
         setItem(key, value) {
             store[key] = value.toString();
-            console.log('entire store', store);
         },
         clear() {
             store = {};
