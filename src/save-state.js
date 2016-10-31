@@ -1,4 +1,4 @@
-import { forEach } from 'lodash';
+import {forEach} from 'lodash';
 
 export default {
     watch: {
@@ -22,11 +22,11 @@ export default {
                 return;
             }
 
+
             forEach(savedState, (value, key) => {
-                if (this.$data[key] === '' || this.$data[key] === []) {
                 this.$data[key] = value;
-            }
-        });
+
+            });
         },
         saveState() {
             saveState(this.getSavedStateParameters().cacheKey, this.$data)
@@ -37,13 +37,11 @@ export default {
     },
 };
 
-function saveState(key, data)
-{
+function saveState(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
 
-function getSavedState(key)
-{
+function getSavedState(key) {
     const savedState = localStorage.getItem(key);
 
     return savedState ? JSON.parse(savedState) : null;

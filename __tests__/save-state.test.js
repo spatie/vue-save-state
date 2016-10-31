@@ -28,9 +28,11 @@ test('it stores state in local storage when a change occurs', async () => {
 test('it restores the state from local storage', async () => {
     localStorage.setItem('testComponent', JSON.stringify({'string': 'restored from state'}))
 
-    vm = await createTestComponent()
+    vm = createTestComponent();
 
-    assert.equal(getLocalStorageContent().string, 'restored from state');
+    await Vue.nextTick(() => {});
+
+    assert.equal(vm.string, 'restored from state');
 });
 
 function getLocalStorageContent() {
@@ -56,6 +58,7 @@ function createTestComponent() {
             getSavedStateParameters() {
                 return {
                     'cacheKey': 'testComponent',
+                    'attributes': ['string']
                 };
             },
         },
