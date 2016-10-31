@@ -65,8 +65,6 @@ export default {
 }
 ```
 
-
-
 With these steps done any change to the state of your component will get written to local storage. The value given in `cacheKey` determines to which key in local storage the state of this component will get written. When the component is created it'll restore it's state from local storage.
 
 There's also a configuration option to determine which properties of the state should be saved/restored:

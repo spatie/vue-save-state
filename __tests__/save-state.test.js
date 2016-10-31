@@ -9,7 +9,7 @@ let localStorage;
 beforeEach(() => {
     localStorage = new LocalStorageMock();
 
-    vm = createTestComponent()
+    vm = createTestComponent();
 });
 
 test('it has a created function', () => {
@@ -49,7 +49,7 @@ test('by default it stores the state for all attributes', async () => {
     const componentConfiguration = {
         'data': {
             'string': '',
-            'anotherString': ''
+            'anotherString': '',
         },
     }
 
@@ -68,12 +68,12 @@ test('it only saves the state for the given attributes in the configuration', as
     const componentConfiguration = {
         'data': {
             'string': 'initial',
-            'anotherString': 'initial anotherString'
+            'anotherString': 'initial anotherString',
         },
         'configuration': {
             'cacheKey': 'testComponent',
-            'saveProperties': ['anotherString']
-        }
+            'saveProperties': ['anotherString'],
+        },
     }
 
     vm = createTestComponent(componentConfiguration)
@@ -93,7 +93,7 @@ test('it will not save any state when the attributes configuration option is emp
         'configuration': {
             'cacheKey': 'testComponent',
             'saveProperties': ['anotherString']
-        }
+        },
     }
 
     vm = createTestComponent(componentConfiguration)
