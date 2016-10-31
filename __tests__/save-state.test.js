@@ -35,11 +35,81 @@ test('it restores the state from local storage', async () => {
     assert.equal(vm.string, 'restored from state');
 });
 
+test('it uses the cacheKey from the given options as the key to store the options in local storage', async() => {
+    vm = createTestComponent({'configuration': {'cacheKey': 'customKey'}});
+
+    vm.string = 'updated string';
+
+    await Vue.nextTick(() => {});
+
+    assert.equal(JSON.parse(localStorage.getItem('customKey')).string, 'updated string');
+});
+
+test('by default it stores the state for all attributes', async () => {
+    const componentConfiguration = {
+        'data': {
+            'string': '',
+            'anotherString': ''
+        },
+    }
+
+    vm = createTestComponent(componentConfiguration)
+
+    vm.string = 'updated';
+    vm.anotherString = 'updated anotherString';
+
+    await Vue.nextTick(() => {});
+
+    assert.equal(getLocalStorageContent().string, 'updated');
+    assert.equal(getLocalStorageContent().anotherString, 'updated anotherString');
+});
+
+test('it only saves the state for the given attributes in the configuration', async() => {
+    const componentConfiguration = {
+        'data': {
+            'string': 'initial',
+            'anotherString': 'initial anotherString'
+        },
+        'configuration': {
+            'cacheKey': 'testComponent',
+            'attributes': ['anotherString']
+        }
+    }
+
+    vm = createTestComponent(componentConfiguration)
+
+    vm.string = 'updated';
+    vm.anotherString = 'updated anotherString';
+
+    await Vue.nextTick(() => {});
+
+    assert.isUndefined(getLocalStorageContent().string);
+    assert.equal(getLocalStorageContent().anotherString, 'updated anotherString');
+});
+
+
+test('it will not save any state when the attributes configuration option is empty', async() => {
+    const componentConfiguration = {
+        'configuration': {
+            'cacheKey': 'testComponent',
+            'attributes': ['anotherString']
+        }
+    }
+
+    vm = createTestComponent(componentConfiguration)
+
+    vm.string = 'updated';
+
+    await Vue.nextTick(() => {});
+
+    assert.isUndefined(getLocalStorageContent().string);
+});
+
 function getLocalStorageContent() {
     return JSON.parse(localStorage.getItem('testComponent'))
 }
 
-function createTestComponent() {
+function createTestComponent({data = null, configuration = null} = {}) {
     const componentConstructor = Vue.extend({
         render() {
 
@@ -48,22 +118,19 @@ function createTestComponent() {
         mixins: [SaveState],
 
         data() {
-            return {
-                string: 'initial string'
+            return data || {
+                string: 'initial string',
             }
         },
 
         methods: {
 
             getSaveStateConfig() {
-                return {
-                    'cacheKey': 'testComponent',
-                    'attributes': ['string']
+                return configuration || {
+                    'cacheKey': 'testComponent'
                 };
             },
         },
-
-
     });
 
     return new componentConstructor().$mount();
