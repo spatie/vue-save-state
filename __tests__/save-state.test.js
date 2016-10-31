@@ -12,11 +12,6 @@ beforeEach(() => {
     vm = createTestComponent();
 });
 
-test('it has a created function', () => {
-    assert.typeOf(vm.$options.created[0], 'function');
-});
-
-
 test('it stores state in local storage when a change occurs', async () => {
     vm.string = 'updated string';
 
@@ -86,7 +81,6 @@ test('it only saves the state for the given attributes in the configuration', as
     assert.isUndefined(getLocalStorageContent().string);
     assert.equal(getLocalStorageContent().anotherString, 'updated anotherString');
 });
-
 
 test('it will not save any state when the attributes configuration option is empty', async() => {
     const componentConfiguration = {
