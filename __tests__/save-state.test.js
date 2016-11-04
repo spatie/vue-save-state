@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { assert } from 'chai';
 import SaveState from '../src/save-state';
-import LocalStorageMock from '../__tests__/Helpers/LocalStorageMock';
+import LocalStorageMock from './helpers/LocalStorageMock';
 
 let vm;
 let localStorage;
