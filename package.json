@@ -8,7 +8,7 @@
     "build": "babel src -d dist",
     "prepublish": "npm run build",
     "test": "jest",
-    "lint": "node_modules/.bin/eslint -c .eslintrc --fix  src __tests__ --ext=.js --ext=.vue;exit 0"
+    "lint": "node_modules/.bin/eslint --fix src __tests__ --ext=.js; exit 0"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "babel-preset-es2015": "^6.9.0",
     "chai": "^3.5.0",
     "eslint": "^3.7.1",
-    "eslint-config-spatie": "^1.1.0",
+    "eslint-config-spatie": "^1.2.6",
     "jest": "^16.0.2"
   },
   "dependencies": {

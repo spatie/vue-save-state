@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {assert} from 'chai';
+import { assert } from 'chai';
 import SaveState from '../src/save-state';
 import LocalStorageMock from '../__tests__/Helpers/LocalStorageMock';
 
@@ -21,7 +21,7 @@ test('it stores state in local storage when a change occurs', async () => {
 });
 
 test('it restores the state from local storage', async () => {
-    localStorage.setItem('testComponent', JSON.stringify({'string': 'restored from state'}))
+    localStorage.setItem('testComponent', JSON.stringify({ 'string': 'restored from state' }));
 
     vm = createTestComponent();
 
@@ -31,7 +31,7 @@ test('it restores the state from local storage', async () => {
 });
 
 test('it uses the cacheKey from the given options as the key to store the options in local storage', async() => {
-    vm = createTestComponent({'configuration': {'cacheKey': 'customKey'}});
+    vm = createTestComponent({ 'configuration': { 'cacheKey': 'customKey' } });
 
     vm.string = 'updated string';
 
@@ -46,9 +46,9 @@ test('by default it stores the state for all attributes', async () => {
             'string': '',
             'anotherString': '',
         },
-    }
+    };
 
-    vm = createTestComponent(componentConfiguration)
+    vm = createTestComponent(componentConfiguration);
 
     vm.string = 'updated';
     vm.anotherString = 'updated anotherString';
@@ -69,9 +69,9 @@ test('it only saves the state for the given attributes in the configuration', as
             'cacheKey': 'testComponent',
             'saveProperties': ['anotherString'],
         },
-    }
+    };
 
-    vm = createTestComponent(componentConfiguration)
+    vm = createTestComponent(componentConfiguration);
 
     vm.string = 'updated';
     vm.anotherString = 'updated anotherString';
@@ -86,11 +86,11 @@ test('it will not save any state when the attributes configuration option is emp
     const componentConfiguration = {
         'configuration': {
             'cacheKey': 'testComponent',
-            'saveProperties': ['anotherString']
+            'saveProperties': ['anotherString'],
         },
-    }
+    };
 
-    vm = createTestComponent(componentConfiguration)
+    vm = createTestComponent(componentConfiguration);
 
     vm.string = 'updated';
 
@@ -100,10 +100,10 @@ test('it will not save any state when the attributes configuration option is emp
 });
 
 function getLocalStorageContent() {
-    return JSON.parse(localStorage.getItem('testComponent'))
+    return JSON.parse(localStorage.getItem('testComponent'));
 }
 
-function createTestComponent({data = null, configuration = null} = {}) {
+function createTestComponent({ data = null, configuration = null } = {}) {
     const componentConstructor = Vue.extend({
         render() {
 
@@ -114,14 +114,14 @@ function createTestComponent({data = null, configuration = null} = {}) {
         data() {
             return data || {
                 string: 'initial string',
-            }
+            };
         },
 
         methods: {
 
             getSaveStateConfig() {
                 return configuration || {
-                    'cacheKey': 'testComponent'
+                    'cacheKey': 'testComponent',
                 };
             },
         },
