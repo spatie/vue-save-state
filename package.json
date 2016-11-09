@@ -8,7 +8,7 @@
     "build": "babel src -d dist",
     "prepublish": "npm run build",
     "test": "jest",
-    "lint": "eslint --fix src __tests__ --ext=.js; exit 0"
+    "lint": "eslint --fix src __tests__; exit 0"
   },
   "repository": {
     "type": "git",

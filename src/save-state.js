@@ -1,4 +1,5 @@
 import { forEach, pickBy } from 'lodash';
+import { saveState, getSavedState } from './local-storage';
 
 export default {
     watch: {
@@ -16,7 +17,7 @@ export default {
 
     methods: {
         loadState() {
-            const savedState = this.getSavedState();
+            const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
 
             if (!savedState) {
                 return;
@@ -37,12 +38,8 @@ export default {
 
             saveState(this.getSaveStateConfig().cacheKey, data);
         },
-        getSavedState() {
-            return getSavedState(this.getSaveStateConfig().cacheKey);
-        },
 
         attributeIsManagedBySaveState(attribute) {
-
             if (! this.getSaveStateConfig().saveProperties) {
                 return true;
             }
@@ -51,13 +48,3 @@ export default {
         },
     },
 };
-
-function saveState(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-function getSavedState(key) {
-    const savedState = localStorage.getItem(key);
-
-    return savedState ? JSON.parse(savedState) : null;
-}
