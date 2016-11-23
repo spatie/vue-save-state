@@ -25,7 +25,6 @@ You can install the package via yarn:
 $ yarn add vue-save-state
 ```
 
-
 or npm
 
 ```bash
@@ -37,9 +36,11 @@ $ npm install vue-save-state
 In order to save the state of your component you'll need to add the `SaveState` mixin:
 
 ```js
+import saveState from 'vue-save-state';
+
 export default {
 
-    mixins: [SaveState],
+    mixins: [saveState],
 
     ...
 }
@@ -48,11 +49,13 @@ export default {
 Next you'll need to add a method called `getSaveStateConfig`:
 
 ```js
+import saveState from 'vue-save-state';
+
 export default {
 
-    mixins: [SaveState],
+    mixins: [saveState],
     
-    ...
+    // ...
 
     methods: {
 
@@ -70,9 +73,11 @@ With these steps done any change to the state of your component will get written
 There's also a configuration option to determine which properties of the state should be saved/restored:
 
 ```js
+import saveState from 'vue-save-state';
+
 export default {
     
-    ...
+    // ...
 
     methods: {
 
