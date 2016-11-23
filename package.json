@@ -1,9 +1,9 @@
 {
   "name": "vue-save-state",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue mixin to save the state of a component to local storage",
-  "main": "dist/index.js",
-  "jsnext:main": "src/index.js",
+  "main": "dist/save-state.js",
+  "jsnext:main": "src/save-state.js",
   "scripts": {
     "build": "babel src -d dist",
     "prepublish": "npm run test; npm run build",
