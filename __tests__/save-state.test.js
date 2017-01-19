@@ -109,6 +109,22 @@ describe('save-state', () => {
         assert.isUndefined(getLocalStorageContent().string);
     });
 
+    it('will use the onload function to transform the date on loading it from local storage', async() => {
+        localStorage.setItem('testComponent', JSON.stringify({ 'string': 'restored from state' }));
+
+        vm = createTestComponent({
+            'configuration': {
+                'cacheKey': 'testComponent',
+                'onLoad': (key, value) => `${key}-${value}`,
+            },
+        });
+
+        await Vue.nextTick(() => {
+        });
+
+        assert.equal(vm.string, 'string-restored from state');
+    });
+
     function getLocalStorageContent() {
         return JSON.parse(localStorage.getItem('testComponent'));
     }

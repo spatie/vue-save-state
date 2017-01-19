@@ -17,6 +17,7 @@ export default {
 
     methods: {
         loadState() {
+
             const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
 
             if (!savedState) {
@@ -26,6 +27,10 @@ export default {
             forEach(savedState, (value, key) => {
 
                 if (this.attributeIsManagedBySaveState(key)) {
+                    if (this.getSaveStateConfig().onLoad) {
+                        value = this.getSaveStateConfig().onLoad(key, value);
+                    }
+
                     this.$data[key] = value;
                 }
             });

@@ -70,6 +70,8 @@ export default {
 
 With these steps done any change to the state of your component will get written to local storage. The value given in `cacheKey` determines to which key in local storage the state of this component will get written. When the component is created it'll restore its state from local storage.
 
+## Only save certain properties of the state
+
 There's also a configuration option to determine which properties of the state should be saved/restored:
 
 ```js
@@ -92,6 +94,30 @@ export default {
 ```
 
 With this configuration only the `title` and `text` properties of your state will get saved/restored.
+
+## Transforming the state on load
+
+If you want to transform the values stored in local storage before loading the into the state of the component add an `onLoad` function to the object return by `getSaveStateConfig`.
+
+```js
+import saveState from 'vue-save-state';
+
+export default {
+    
+    // ...
+
+    methods: {
+
+        getSaveStateConfig() {
+            return {
+                'onLoad': (key, value) => {
+                    //return a new value
+                },
+            };
+        },
+    },
+}
+```
 
 ## Change log
 
