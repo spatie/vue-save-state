@@ -4,7 +4,7 @@ const localStorageMock = (function () {
 
     return {
         getItem(key) {
-            return store[key];
+            return store[key] || null;
         },
         setItem(key, value) {
             store[key] = value.toString();
@@ -12,6 +12,9 @@ const localStorageMock = (function () {
         clear() {
             store = {};
         },
+        removeItem(key) {
+            delete store[key];
+        }
     };
 });
 

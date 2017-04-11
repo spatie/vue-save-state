@@ -8,3 +8,6 @@ export function getSavedState(key) {
     return savedState ? JSON.parse(savedState) : null;
 }
 
+export function clearSavedState(key) {
+    localStorage.removeItem(key);
+}
