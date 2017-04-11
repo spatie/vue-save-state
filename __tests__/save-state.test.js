@@ -125,6 +125,18 @@ describe('save-state', () => {
         assert.equal(vm.string, 'string-restored from state');
     });
 
+    it('can delete the saved state', async() => {
+        localStorage.setItem('testComponent', JSON.stringify({ 'string': 'saved in state' }));
+
+        vm = createTestComponent();
+
+        await Vue.nextTick(() => {});
+
+        vm.clearSavedState();
+
+        assert.isNull(localStorage.getItem('testComponent'));
+    });
+
     function getLocalStorageContent() {
         return JSON.parse(localStorage.getItem('testComponent'));
     }
