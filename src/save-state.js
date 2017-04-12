@@ -45,6 +45,12 @@ export default {
         },
 
         attributeIsManagedBySaveState(attribute) {
+            if (this.getSaveStateConfig().ignoreProperties &&
+                this.getSaveStateConfig().ignoreProperties.indexOf(attribute) !== -1) {
+
+                return false;
+            }
+
             if (! this.getSaveStateConfig().saveProperties) {
                 return true;
             }
@@ -54,6 +60,6 @@ export default {
 
         clearSavedState() {
             clearSavedState(this.getSaveStateConfig().cacheKey);
-        }
+        },
     },
 };
