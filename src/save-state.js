@@ -1,5 +1,5 @@
 import { forEach, pickBy } from 'lodash';
-import { saveState, getSavedState } from './local-storage';
+import { saveState, getSavedState, clearSavedState } from './local-storage';
 
 export default {
     watch: {
@@ -45,11 +45,21 @@ export default {
         },
 
         attributeIsManagedBySaveState(attribute) {
+            if (this.getSaveStateConfig().ignoreProperties &&
+                this.getSaveStateConfig().ignoreProperties.indexOf(attribute) !== -1) {
+
+                return false;
+            }
+
             if (! this.getSaveStateConfig().saveProperties) {
                 return true;
             }
 
             return this.getSaveStateConfig().saveProperties.indexOf(attribute) !== -1;
+        },
+
+        clearSavedState() {
+            clearSavedState(this.getSaveStateConfig().cacheKey);
         },
     },
 };

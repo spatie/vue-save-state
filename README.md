@@ -92,8 +92,30 @@ export default {
     },
 }
 ```
-
 With this configuration only the `title` and `text` properties of your state will get saved/restored.
+
+Alternatively you could specify which fields to ignore:
+
+```js
+import saveState from 'vue-save-state';
+
+export default {
+
+    // ...
+
+    methods: {
+
+        getSaveStateConfig() {
+            return {
+                'cacheKey': 'nameOfYourComponent',
+                'ignoreProperties': ['title'],
+            };
+        },
+    },
+}
+```
+
+In this scenario all fields except for the `title` property in your state will get saved/restored.
 
 ## Transforming the state on load
 
@@ -103,7 +125,7 @@ If you want to transform the values stored in local storage before loading the i
 import saveState from 'vue-save-state';
 
 export default {
-    
+
     // ...
 
     methods: {

@@ -91,6 +91,88 @@ describe('save-state', () => {
         assert.equal(getLocalStorageContent().anotherString, 'updated anotherString');
     });
 
+    it('only saves the state for the all non ignored attributes in the configuration', async() => {
+        const componentConfiguration = {
+            'data': {
+                'string': 'initial',
+                'anotherString': 'initial anotherString',
+            },
+            'configuration': {
+                'cacheKey': 'testComponent',
+                'ignoreProperties': ['string'],
+            },
+        };
+
+        vm = createTestComponent(componentConfiguration);
+
+        vm.string = 'updated';
+        vm.anotherString = 'updated anotherString';
+
+        await Vue.nextTick(() => {
+        });
+
+        assert.isUndefined(getLocalStorageContent().string);
+        assert.equal(getLocalStorageContent().anotherString, 'updated anotherString');
+    });
+
+    it('only saves the state for the attributes that do not intersect on ignore and save attribute list.', async() => {
+        const componentConfiguration = {
+            'data': {
+                'string': 'initial',
+                'anotherString': 'initial anotherString',
+                'oneLastString' : 'initial oneLastString',
+            },
+
+            'configuration': {
+                'cacheKey': 'testComponent',
+                'ignoreProperties': ['string', 'anotherString'],
+                'saveProperties': ['anotherString', 'oneLastString'],
+            },
+        };
+
+        vm = createTestComponent(componentConfiguration);
+
+        vm.string = 'updated';
+        vm.anotherString = 'updated anotherString';
+        vm.oneLastString = 'updated oneLastString';
+
+        await Vue.nextTick(() => {
+        });
+
+        assert.isUndefined(getLocalStorageContent().string);
+        assert.isUndefined(getLocalStorageContent().anotherString);
+        assert.equal(getLocalStorageContent().oneLastString, 'updated oneLastString');
+    });
+
+    it('only saves the state for the attributes that are included even if others are ignored', async() => {
+        const componentConfiguration = {
+            'data': {
+                'string': 'initial',
+                'anotherString': 'initial anotherString',
+                'oneLastString' : 'initial oneLastString',
+            },
+
+            'configuration': {
+                'cacheKey': 'testComponent',
+                'ignoreProperties': ['string'],
+                'saveProperties': ['oneLastString'],
+            },
+        };
+
+        vm = createTestComponent(componentConfiguration);
+
+        vm.string = 'updated';
+        vm.anotherString = 'updated anotherString';
+        vm.oneLastString = 'updated oneLastString';
+
+        await Vue.nextTick(() => {
+        });
+
+        assert.isUndefined(getLocalStorageContent().string);
+        assert.isUndefined(getLocalStorageContent().anotherString);
+        assert.equal(getLocalStorageContent().oneLastString, 'updated oneLastString');
+    });
+
     it('will not save any state when the attributes configuration option is empty', async() => {
         const componentConfiguration = {
             'configuration': {
@@ -123,6 +205,18 @@ describe('save-state', () => {
         });
 
         assert.equal(vm.string, 'string-restored from state');
+    });
+
+    it('can delete the saved state', async() => {
+        localStorage.setItem('testComponent', JSON.stringify({ 'string': 'saved in state' }));
+
+        vm = createTestComponent();
+
+        await Vue.nextTick(() => {});
+
+        vm.clearSavedState();
+
+        assert.isNull(localStorage.getItem('testComponent'));
     });
 
     function getLocalStorageContent() {
