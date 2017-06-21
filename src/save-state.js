@@ -1,4 +1,3 @@
-import { forEach, pickBy } from 'lodash';
 import { saveState, getSavedState, clearSavedState } from './local-storage';
 
 export default {
@@ -17,29 +16,33 @@ export default {
 
     methods: {
         loadState() {
-
             const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
 
             if (!savedState) {
                 return;
             }
 
-            forEach(savedState, (value, key) => {
-
+            for (let key in savedState) {
                 if (this.attributeIsManagedBySaveState(key)) {
+                    let value = savedState[key];
+
                     if (this.getSaveStateConfig().onLoad) {
                         value = this.getSaveStateConfig().onLoad(key, value);
                     }
 
                     this.$data[key] = value;
                 }
-            });
+            }
         },
 
         saveState() {
-            const data = pickBy(this.$data, (value, attribute) => {
-                return this.attributeIsManagedBySaveState(attribute);
-            });
+            const data = Object.keys(this.$data)
+                .filter((key) => this.attributeIsManagedBySaveState(key))
+                .reduce((obj, key) => {
+                    obj[key] = this.$data[key];
+
+                    return obj;
+                }, {});
 
             saveState(this.getSaveStateConfig().cacheKey, data);
         },
