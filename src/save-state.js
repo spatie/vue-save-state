@@ -1,4 +1,4 @@
-import { forEach, pickBy } from 'lodash';
+import { forEach, pickBy } from 'lodash/fp';
 import { saveState, getSavedState, clearSavedState } from './local-storage';
 
 export default {
