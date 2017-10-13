@@ -1,11 +1,11 @@
-# A Vue mixin to save the state of a component to local storage
+# A Vue mixin to save the state of a component to local or session storage
 
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-save-state.svg?style=flat-square)](https://npmjs.com/package/vue-save-state)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/spatie/vue-save-state/master.svg?style=flat-square)](https://travis-ci.org/spatie/vue-save-state)
 [![npm](https://img.shields.io/npm/dt/vue-save-state.svg?style=flat-square)](https://npmjs.com/package/vue-save-state)
 
-This package provides a `SaveState` mixin that automatically saves any change in the state of your component to localStorage. The next time that component gets initialized it will restore its state from the saved values in local storage.
+This package provides a `SaveState` mixin that automatically saves any change in the state of your component to localStorage or sessionStorage. The next time that component gets initialized it will restore its state from the saved values in local or session storage.
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -138,6 +138,22 @@ export default {
             };
         },
     },
+}
+```
+
+## Using sessionStorage instead of localStorage
+
+If you want to use sessionStorage instead of localStorage, you can just import `sessionSaveState` and use it the same way.
+
+```js
+import {sessionSaveState} from 'vue-save-state';
+
+export default {
+
+    mixins: [saveState],
+    
+    // ...
+
 }
 ```
 

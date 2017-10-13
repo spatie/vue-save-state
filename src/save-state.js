@@ -1,8 +1,9 @@
 import pickBy from 'lodash/pickBy';
 import forEach from 'lodash/forEach';
-import { saveState, getSavedState, clearSavedState } from './local-storage';
+import localStorage from './local-storage';
+import sessionStorage from './session-storage';
 
-export default {
+const localSaveState = {
     watch: {
         '$data': {
             handler() {
@@ -16,10 +17,12 @@ export default {
         this.loadState();
     },
 
+    $_saveState: localStorage,
+
     methods: {
         loadState() {
 
-            const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
+            const savedState = this.$options.$_saveState.getSavedState(this.getSaveStateConfig().cacheKey);
 
             if (!savedState) {
                 return;
@@ -42,7 +45,7 @@ export default {
                 return this.attributeIsManagedBySaveState(attribute);
             });
 
-            saveState(this.getSaveStateConfig().cacheKey, data);
+            this.$options.$_saveState.saveState(this.getSaveStateConfig().cacheKey, data);
         },
 
         attributeIsManagedBySaveState(attribute) {
@@ -60,7 +63,16 @@ export default {
         },
 
         clearSavedState() {
-            clearSavedState(this.getSaveStateConfig().cacheKey);
+            this.$options.$_saveState.clearSavedState(this.getSaveStateConfig().cacheKey);
         },
     },
 };
+
+const sessionSaveState = {
+    mixins: [localSaveState],
+
+    $_saveState: sessionStorage,
+};
+
+export {localSaveState, sessionSaveState};
+export default localSaveState;
