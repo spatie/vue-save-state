@@ -1,6 +1,7 @@
 import pickBy from 'lodash/pickBy';
 import forEach from 'lodash/forEach';
 import localStorage from './local-storage';
+import sessionStorage from './session-storage';
 
 const localSaveState = {
     watch: {
@@ -67,4 +68,11 @@ const localSaveState = {
     },
 };
 
+const sessionSaveState = {
+    mixins: [localSaveState],
+
+    $_saveState: sessionStorage,
+};
+
+export {localSaveState, sessionSaveState};
 export default localSaveState;
