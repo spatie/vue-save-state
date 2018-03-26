@@ -18,7 +18,7 @@ export default {
 
     methods: {
         loadState() {
-
+            if (!this.getSaveStateConfig) return;
             const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
 
             if (!savedState) {
@@ -38,6 +38,7 @@ export default {
         },
 
         saveState() {
+            if (!this.getSaveStateConfig) return;
             const data = pickBy(this.$data, (value, attribute) => {
                 return this.attributeIsManagedBySaveState(attribute);
             });
