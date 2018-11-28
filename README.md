@@ -141,6 +141,27 @@ export default {
 }
 ```
 
+## Use sessionStorage instead of localStorage
+
+```js
+import saveState from 'vue-save-state';
+
+export default {
+
+    // ...
+
+    methods: {
+
+        getSaveStateConfig() {
+            return {
+                'cacheKey': 'nameOfYourComponent',
+                'cacheType': 'sessionStorage',
+            };
+        },
+    },
+}
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
