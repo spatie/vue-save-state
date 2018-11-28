@@ -1,6 +1,8 @@
 # Changelog
 
 All notable changes to `vue-save-state` will be documented in this file
+## 1.3 - 2018-11-28
+- Add `sessionStorage` option
 
 ## 1.2.1 - 2017-07-30
 - Reduced build size
