@@ -19,7 +19,7 @@ export default {
     methods: {
         loadState() {
 
-            const savedState = getSavedState(this.getSaveStateConfig().cacheKey);
+            const savedState = getSavedState(this.getSaveStateConfig().cacheKey, this.getSaveStateConfig().cacheType);
 
             if (!savedState) {
                 return;
@@ -42,7 +42,7 @@ export default {
                 return this.attributeIsManagedBySaveState(attribute);
             });
 
-            saveState(this.getSaveStateConfig().cacheKey, data);
+            saveState(this.getSaveStateConfig().cacheKey, data, this.getSaveStateConfig().cacheType);
         },
 
         attributeIsManagedBySaveState(attribute) {
@@ -60,7 +60,7 @@ export default {
         },
 
         clearSavedState() {
-            clearSavedState(this.getSaveStateConfig().cacheKey);
+            clearSavedState(this.getSaveStateConfig().cacheKey, this.getSaveStateConfig().cacheType);
         },
     },
 };
