@@ -29,9 +29,6 @@
     "url": "https://github.com/spatie/vue-save-state/issues"
   },
   "homepage": "https://github.com/spatie/vue-save-state",
-  "dependencies": {
-    "lodash": "^4.0.0"
-  },
   "peerDependencies": {
     "vue": "^2.0.3"
   },

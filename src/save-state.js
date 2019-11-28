@@ -1,5 +1,3 @@
-import pickBy from 'lodash/pickBy';
-import forEach from 'lodash/forEach';
 import { saveState, getSavedState, clearSavedState } from './local-storage';
 
 export default {
@@ -25,7 +23,8 @@ export default {
                 return;
             }
 
-            forEach(savedState, (value, key) => {
+            Object.keys(savedState).forEach(key => {
+                let value = savedState[key];
 
                 if (this.attributeIsManagedBySaveState(key)) {
                     if (this.getSaveStateConfig().onLoad) {
@@ -38,8 +37,12 @@ export default {
         },
 
         saveState() {
-            const data = pickBy(this.$data, (value, attribute) => {
-                return this.attributeIsManagedBySaveState(attribute);
+            const data = {};
+
+            Object.keys(this.$data).forEach(key => {
+                if (this.attributeIsManagedBySaveState(key)) {
+                    data[key] = this.$data[key];
+                }
             });
 
             saveState(this.getSaveStateConfig().cacheKey, data);
